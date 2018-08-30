@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script> -->
+<script src="Scripts/angular.js"></script>
+<script src="Scripts/Script.js"></script>
+
+<body ng-app="myModule">
+
+<div class="container" ng-controller="myController">
+
+	<div class = "row">
+		<div class="col-sm-12">				  
+			<h1 class="text-center">{{message}}</h1>		  	
+		</div>
+		<div class="col-sm-6">
+			<h2>Company Details</h2>
+			<p>Company Name: {{ companyDetails.companyName }}</p>
+			<p>Registration Number: {{companyDetails.companyRegNo}}</p>
+			<p>Class of Company: {{ companyDetails.companyType }}</p>
+			<p>Date of Incorporation: {{ companyDetails.doi }}</p>
+			<p>Two way Data-Binding using ng-model: 
+				<input type="text" ng-model="companyDetails.companyName" class="form-control"> 
+			</p>
+		
+			<h2>Employee Details</h2>
+			<table class="table table-bordered table-sm table-primary table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Gender</th>
+						<th>Salary</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "employee in employees" >
+						<td>{{employee.firstName}}</td>
+						<td>{{employee.lastName}}</td>
+						<td>{{employee.gender}}</td>
+						<td>{{employee.salary}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-6">
+			<h2>Company Situated at</h2>
+			<ol ng-repeat = "country in countries">
+				<li>					
+					{{country.name}} <strong>Index: {{$index}}</strong>
+					<img ng-src="{{country.flag}}" alt="{{country.name + ' flag'}}" style="height:40px; width:60px"/>
+					<ul ng-repeat = "city in country.cities">
+						<li>{{city.name}} <strong>Index: {{$index}}, Parent Index: {{$parent.$index}}</strong></li>
+					</ul>
+				</li>
+			</ol>
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>
